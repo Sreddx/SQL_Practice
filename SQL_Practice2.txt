@@ -1,0 +1,27 @@
+CREATE TABLE percent_change (
+    department text,
+    spend_2019 numeric(10,2),
+    spend_2022 numeric(10,2)
+);
+
+-Numeric represents 10 digits before decimal point and 2 after
+
+SELECT department,
+       spend_2019,
+       spend_2022,
+       round( (spend_2022 - spend_2019) /
+                    spend_2019 * 100, 1) AS pct_change
+FROM percent_change;
+
+- Round function does math operation and allows us to add it to the database as a col of numeric type with one decimal digit
+
+SELECT
+    percentile_cont(.5)
+    WITHIN GROUP (ORDER BY numbers),
+    percentile_disc(.5)
+    WITHIN GROUP (ORDER BY numbers)
+FROM percentile_test;
+
+- Change percentile we want with functions percentile_cont & percentile_disc
+- Percentille_cont makes sure that any number below the result is within the percentil
+- Must be arranged for it to work
