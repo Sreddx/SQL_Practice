@@ -1,0 +1,6 @@
+Math operators
+1)Reviewed math operators
+2)Used the sum function
+3)Used the percentil
+4)Calculate percentages
+
