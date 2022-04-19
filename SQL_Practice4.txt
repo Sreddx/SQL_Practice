@@ -1,0 +1,76 @@
+join 
+
+CREATE TABLE district_2020 (
+    id integer CONSTRAINT id_key_2020 PRIMARY KEY,
+    school_2020 text
+);
+
+CREATE TABLE district_2035 (
+    id integer CONSTRAINT id_key_2035 PRIMARY KEY,
+    school_2035 text
+);
+
+INSERT INTO district_2020 VALUES
+    (1, 'Oak Street School'),
+    (2, 'Roosevelt High School'),
+    (5, 'Dover Middle School'),
+    (6, 'Webutuck High School');
+
+INSERT INTO district_2035 VALUES
+    (1, 'Oak Street School'),
+    (2, 'Roosevelt High School'),
+    (3, 'Morrison Elementary'),
+    (4, 'Chase Magnet Academy'),
+    (6, 'Webutuck High School');
+
+-- Listing 7-4: Using JOIN 
+
+SELECT *
+FROM district_2020 JOIN district_2035
+ON district_2020.id = district_2035.id
+ORDER BY district_2020.id;
+
+-- Bonus: Also can be specified as INNER JOIN
+SELECT *
+FROM district_2020 INNER JOIN district_2035
+ON district_2020.id = district_2035.id
+ORDER BY district_2020.id;
+
+-- Listing 7-5: JOIN with USING
+
+SELECT *
+FROM district_2020 JOIN district_2035
+USING (id)
+ORDER BY district_2020.id;
+
+-- Listing 7-6: Using LEFT JOIN
+
+SELECT *
+FROM district_2020 LEFT JOIN district_2035
+ON district_2020.id = district_2035.id
+ORDER BY district_2020.id;
+
+-- Listing 7-7: Using RIGHT JOIN
+
+SELECT *
+FROM district_2020 RIGHT JOIN district_2035
+ON district_2020.id = district_2035.id
+ORDER BY district_2035.id;
+
+--Filter missing values and show null
+SELECT *
+FROM district_2020 LEFT JOIN district_2035
+ON district_2020.id = district_2035.id
+WHERE district_2035.id IS NULL;
+
+--Quering specific columns
+SELECT district_2020.id,
+       district_2020.school_2020,
+       district_2035.school_2035
+FROM district_2020 LEFT JOIN district_2035
+ON district_2020.id = district_2035.id
+ORDER BY district_2020.id;
+
+
+
+
